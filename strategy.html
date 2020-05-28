@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let strategies = {
+      'S': function (salary) {
+        return salary * 4
+      },
+      'A': function (salary) {
+        return salary * 3
+      },
+      'B': function (salary) {
+        return salary * 2
+      },
+    }  
+    function calcuateBonus(type,salary){
+      return strategies[type](salary);
+    }
+    console.log(calcuateBonus('S',10000));
+    console.log(calcuateBonus('A',10000));
+    console.log(calcuateBonus('B',10000));
+  </script>
+</body>
+
+</html>
