@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .modal{
+      position: fixed;
+      left: 50%;
+      margin-left: -200px;
+      margin-top: 20%;
+      width: 400px;
+      height: 300px;
+      border: 1px solid red;
+
+    }
+  </style>
+</head>
+
+<body>
+  <button id="login-btn">click</button>
+  <script>
+    // https://github.com/elemefe/element/blob/dev/packages/message-box/src/main.js#L79
+    let getSingle = function (fn) {
+      let res;
+      return function () {
+        return res || (res = fn.apply(this, arguments));
+      }
+    }
+    let createLoginPop = function() {
+      let div = document.createElement('div');
+      div.innerHTML = '登录弹窗';
+      div.className = 'modal';
+      div.style.display = 'none';
+      document.body.appendChild(div);
+      div.onclick = function () {
+        div.style.display = 'none';
+      }
+      return div;
+    }
+    let createSingleLoginPop = getSingle(createLoginPop);
+    let btn = document.getElementById('login-btn');
+    btn.onclick=function(){
+      let loginPop = createSingleLoginPop();
+      loginPop.style.display = 'block';
+    }
+  </script>
+</body>
+
+</html>
