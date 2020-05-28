@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // https://github.com/vuejs/vue/blob/dev/src/core/instance/events.js#L52
+    class EventBus {
+      constructor() {
+        this.callback = {}
+      }
+      $on(name, fn) {
+        (this.callback[name] || (this.callback[name] = [])).push(fn)
+      }
+      $emit(name, ...args) {
+        let cbs = this.callback[name] || [];
+        cbs.forEach(cb => {
+          cb.call(this, ...args)
+        });
+      }
+      $off(name) {
+        delete this.callback[name]
+      }
+    
+    }
+    let eb = new EventBus();
+
+    eb.$on('eb1', (...name) => {
+      console.log('eb1', ...name);
+    })
+    eb.$on('eb2', (...name) => {
+      console.log('eb2', ...name);
+    })
+    eb.$emit('eb1', 1, 1)
+    eb.$emit('eb1', 2, 1)
+    eb.$emit('eb2', 3, 1)
+    eb.$emit('eb2', 4, 1)
+    console.log('==============');
+    eb.$off('eb2')
+    eb.$emit('eb1', 5, 1)
+    eb.$emit('eb2', 6, 1)
+  </script>
+</body>
+
+</html>
