@@ -21,12 +21,12 @@
         return salary * 2
       },
     }  
-    function calcuateBonus(type,salary){
+    function calculateBonus(type,salary){
       return strategies[type](salary);
     }
-    console.log(calcuateBonus('S',10000));
-    console.log(calcuateBonus('A',10000));
-    console.log(calcuateBonus('B',10000));
+    console.log(calculateBonus('S',10000));
+    console.log(calculateBonus('A',10000));
+    console.log(calculateBonus('B',10000));
   </script>
 </body>
 
